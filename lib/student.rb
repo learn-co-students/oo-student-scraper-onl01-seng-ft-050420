@@ -5,24 +5,28 @@ class Student
   @@all = []
 
   def initialize(student_hash)
-    student_hash[:name] = name
-    student_hash[:location] = location
-    student_hash[:twitter] = twitter
-    student_hash[:linkedin] = linkedin
-    student_hash[:github] = github
-    student_hash[:blog] = blog
-    student_hash[:profile_quote] = profile_quote
-    student_hash[:bio] = bio
-    student_hash[:profile_url] = profile_url
+    @name = student_hash[:name]
+    @location = student_hash[:location] 
     @@all << self
   end
 
   def self.create_from_collection(students_array)
-    
+    students_array.each do |student|
+      @name = student[:name]
+      @location = student[:location]
+      student = self.new(student)
+      @@all << student 
+    end
   end
 
   def add_student_attributes(attributes_hash)
-    
+    @twitter = attributes_hash[:twitter]
+    @linkedin = attributes_hash[:linkedin]
+    @github = attributes_hash[:github]
+    @blog = attributes_hash[:blog]
+    @profile_quote = attributes_hash[:profile_quote]
+    @bio = attributes_hash[:bio]
+    @profile_url = attributes_hash[:profile_url]
   end
 
   def self.all
