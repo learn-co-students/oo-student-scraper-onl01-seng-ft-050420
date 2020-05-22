@@ -43,6 +43,14 @@ class Scraper
    
     hash
   end
+  
+  def self.create_out_of_array(array)
+    array.each{|student| Student.new(student)}
+  end 
+  
+  def self.add_attr(student, hash)
+    hash.each {|key, value| student.send("#{key}=", value)}
+  end 
 
 end
 
